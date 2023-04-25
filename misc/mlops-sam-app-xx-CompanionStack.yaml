@@ -1,0 +1,51 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Metadata": {
+    "SamCliInfo": "1.81.0",
+    "key": "mlops-sam-app-7fd603f4-CompanionStack"
+  },
+  "Resources": {
+    "MLSamFunction698d6415Repo": {
+      "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "RepositoryName": "mlopssamapp7fd603f4/mlsamfunction698d6415repo",
+        "Tags": [
+          {
+            "Key": "ManagedStackSource",
+            "Value": "AwsSamCli"
+          },
+          {
+            "Key": "AwsSamCliCompanionStack",
+            "Value": "mlops-sam-app-7fd603f4-CompanionStack"
+          }
+        ],
+        "RepositoryPolicyText": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "AllowLambdaSLR",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetRepositoryPolicy",
+                "ecr:BatchGetImage"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "MLSamFunction698d6415Out": {
+      "Value": "!Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.${AWS::URLSuffix}/${MLSamFunction698d6415Repo}"
+    }
+  },
+  "Description": "AWS SAM CLI Managed ECR Repo Stack"
+}

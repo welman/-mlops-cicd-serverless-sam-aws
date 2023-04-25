@@ -10,7 +10,7 @@ Globals:
     Timeout: 3
 
 Resources:
-  HelloWorldMLFunction:
+  MLSamFunction:
     Type: AWS::Serverless::Function 
     Properties:
       PackageType: Image
@@ -26,12 +26,12 @@ Resources:
       DockerTag: python3.8-v1
 
 Outputs:
-  HelloWorldMLApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World ML function"
+  MLSamFunctionApi:
+    Description: "API Gateway endpoint URL for Prod stage for ML Sam Function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/predict/"
-  HelloWorldMLFunction:
-    Description: "Hello World ML Predict Lambda Function ARN"
-    Value: !GetAtt HelloWorldMLFunction.Arn
-  HelloWorldMLFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World ML function"
-    Value: !GetAtt HelloWorldMLFunctionRole.Arn
+  MLSamFunction:
+    Description: "ML Sam Function Predict Lambda Function ARN"
+    Value: !GetAtt MLSamFunction.Arn
+  MLSamFunctionIamRole:
+    Description: "Implicit IAM Role created for ML Sam Function"
+    Value: !GetAtt MLSamFunctionRole.Arn

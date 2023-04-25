@@ -5,4 +5,4 @@ curl -d '{
    "Weight":200
 }'\
      -H "Content-Type: application/json" \
-     -X POST https://sh2s4mhqs3.execute-api.ap-southeast-2.amazonaws.com/Prod/predict
+     -X POST https://3w8jtf5ywl.execute-api.ap-southeast-2.amazonaws.com/Prod/predict

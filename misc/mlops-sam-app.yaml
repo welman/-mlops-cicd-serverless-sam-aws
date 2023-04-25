@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'python3.8
+
+  Sample SAM Template for sam-ml-predict
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  MLSamFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /predict
+            Method: post
+      ImageUri: 316650359375.dkr.ecr.ap-southeast-2.amazonaws.com/mlopssamapp7fd603f4/mlsamfunction698d6415repo:mlsamfunction-69069eea12e0-python3.8-v1
+    Metadata:
+      DockerContext: /d/proj2/ml-ops/mine/-mlops-cicd-serverless-sam-aws/mlops-sam-app/app
+      DockerTag: python3.8-v1
+      Dockerfile: Dockerfile
+      SamResourceId: MLSamFunction
+Outputs:
+  MLSamFunctionApi:
+    Description: API Gateway endpoint URL for Prod stage for ML Sam Function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/predict/
+  MLSamFunction:
+    Description: ML Sam Function Predict Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - MLSamFunction
+      - Arn
+  MLSamFunctionIamRole:
+    Description: Implicit IAM Role created for ML Sam Function
+    Value:
+      Fn::GetAtt:
+      - MLSamFunctionRole
+      - Arn
