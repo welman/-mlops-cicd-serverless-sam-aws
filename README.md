@@ -14,3 +14,9 @@
 If building on Cloud9, good idea to resize disk space by using utils/resize.sh.
 `utils/resize.sh 30`
 
+Pipelines
+* `sam pipeline bootstrap` Creates pipeline's supporting resources (roles, users, buckets, ECR, etc), via Cloudformation
+* `sam pipeline init` Creates pipeline configuration via Cloudformation
+
+* `sam pipeline init --bootstrap` Both (above) in a single command
+
